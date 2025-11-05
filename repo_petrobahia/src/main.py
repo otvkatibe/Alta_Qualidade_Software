@@ -1,14 +1,14 @@
 from legacy.pedido_service import processar_pedido
-from legacy.clientes import cadastrar_cliente
+from legacy.clients import cadastrar_cliente
 
-pedidos = [
-    {"cliente": "TransLog", "produto": "diesel", "qtd": 1200, "cupom": "MEGA10"},
-    {"cliente": "MoveMais", "produto": "gasolina", "qtd": 300, "cupom": None},
-    {"cliente": "EcoFrota", "produto": "etanol", "qtd": 50, "cupom": "NOVO5"},
-    {"cliente": "PetroPark", "produto": "lubrificante", "qtd": 12, "cupom": "LUB2"},
+orders = [
+    {"Client": "TransLog", "Product": "diesel", "Qty": 1200, "Voucher": "MEGA10"},
+    {"Client": "MoveMais", "Product": "gasolina", "Qty": 300, "Voucher": None},
+    {"Client": "EcoFrota", "Product": "etanol", "Qty": 50, "Voucher": "NOVO5"},
+    {"Client": "PetroPark", "Product": "lubrificante", "Qty": 12, "Voucher": "LUB2"},
 ]
 
-clientes = [
+clients = [
     {"nome": "Ana Paula", "email": "ana@@petrobahia", "cnpj": "123"},
     {"nome": "Carlos", "email": "carlos@petrobahia.com", "cnpj": "456"},
 ]

@@ -1,37 +1,37 @@
-from legacy.preco_calculadora import calcular_preco
+from legacy.price_calculator import calculate_price
 
-def processar_pedido(p):
-    prod = p.get("produto")
-    qtd = p.get("qtd")
-    cupom = p.get("cupom")
+def process_order(order):
+    product = order.get("product")
+    qty = order.get("qty")
+    voucher = order.get("voucher")
 
-    if qtd == 0:
-        print("qtd zero, retornando 0")
+    if qty == 0:
+        print("Qty zero, returning 0")
         return 0
 
-    preco = calcular_preco(prod, qtd)
-    if preco < 0:
-        print("algo deu errado, preco negativo")
-        preco = 0
+    price = calculate_price(product, qty)
+    if price < 0:
+        print("Error: negative price")
+        price = 0
 
-    if cupom == "MEGA10":
-        preco = preco - (preco * 0.1)
+    if voucher == "MEGA10":
+        price = price - (price * 0.1)
     else:
-        if cupom == "NOVO5":
-            preco = preco - (preco * 0.05)
+        if voucher == "NOVO5":
+            price = price - (price * 0.05)
         else:
-            if cupom == "LUB2" and prod == "lubrificante":
-                preco = preco - 2
+            if voucher == "LUB2" and product == "lubricant":
+                price = price - 2
             else:
-                preco = preco
+                price = price
 
-    if prod == "diesel":
-        preco = round(preco, 0)
+    if product == "diesel":
+        price = round(price, 0)
     else:
-        if prod == "gasolina":
-            preco = round(preco, 2)
+        if product == "gas":
+            price = round(price, 2)
         else:
-            preco = float(int(preco * 100) / 100.0)
+            price = float(int(price * 100) / 100.0)
 
-    print("pedido ok:", p["cliente"], prod, qtd, "=>", preco)
-    return preco
+    print("Order OK:", p["client"], product, qty, "=>", price)
+    return price
