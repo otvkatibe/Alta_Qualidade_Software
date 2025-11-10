@@ -2,11 +2,11 @@ from legacy.price_calculator import calculate_price
 
 def process_order(order):
     product = order.get("product")
-    quantity = order.get("qty")
+    quantity = order.get("quantity")
     voucher = order.get("voucher")
 
     if quantity == 0:
-        print("Qty zero, returning 0")
+        print("Quantity zero, returning 0")
         return 0
 
     price = calculate_price(product, quantity)
@@ -33,5 +33,5 @@ def process_order(order):
         else:
             price = float(int(price * 100) / 100.0)
 
-    print("Order OK:", order["client"], product, quantity, "=>", price)
+    print("Order OK:", order.get("client"), product, quantity, "=>", price)
     return price
