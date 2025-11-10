@@ -1,0 +1,37 @@
+from legacy.price_calculator import calculate_price
+
+def process_order(order):
+    product = order.get("product")
+    quantity = order.get("quantity")
+    voucher = order.get("voucher")
+
+    if quantity == 0:
+        print("Quantity zero, returning 0")
+        return 0
+
+    price = calculate_price(product, quantity)
+    if price < 0:
+        print("Error: negative price")
+        price = 0
+
+    if voucher == "MEGA10":
+        price = price - (price * 0.1)
+    else:
+        if voucher == "NOVO5":
+            price = price - (price * 0.05)
+        else:
+            if voucher == "LUB2" and product == "lubricant":
+                price = price - 2
+            else:
+                price = price
+
+    if product == "diesel":
+        price = round(price, 0)
+    else:
+        if product == "gas":
+            price = round(price, 2)
+        else:
+            price = float(int(price * 100) / 100.0)
+
+    print("Order OK:", order.get("client"), product, quantity, "=>", price)
+    return price
