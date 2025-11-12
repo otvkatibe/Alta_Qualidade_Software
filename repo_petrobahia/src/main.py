@@ -1,32 +1,46 @@
-from legacy.pedido_service import processar_pedido
-from legacy.clients import cadastrar_cliente
+"""
+Main application module for the PetroBahia order processing system.
 
-orders = [
-    {"Client": "TransLog", "Product": "diesel", "Qty": 1200, "Voucher": "MEGA10"},
-    {"Client": "MoveMais", "Product": "gasolina", "Qty": 300, "Voucher": None},
-    {"Client": "EcoFrota", "Product": "etanol", "Qty": 50, "Voucher": "NOVO5"},
-    {"Client": "PetroPark", "Product": "lubrificante", "Qty": 12, "Voucher": "LUB2"},
-]
+This module serves as the entry point for the application, demonstrating
+the usage of the order processing system with sample data.
+"""
 
-clients = [
-    {"nome": "Ana Paula", "email": "ana@@petrobahia", "cnpj": "123"},
-    {"nome": "Carlos", "email": "carlos@petrobahia.com", "cnpj": "456"},
-]
+from legacy.clients import load_clients
+from legacy.order_service import OrderService
 
-print("==== Início processamento PetroBahia ====")
 
-for c in clientes:
-    ok = cadastrar_cliente(c)
-    if ok:
-        print("cliente ok:", c["nome"])
-    else:
-        print("cliente com problema:", c)
+def main():
+    """
+    Main function to demonstrate the order processing system.
 
-valores = []
-for p in pedidos:
-    v = processar_pedido(p)
-    valores.append(v)
-    print("pedido:", p, "-- valor final:", v)
+    This function loads client data, creates sample orders,
+    and displays order summaries.
+    """
+    # Load clients from file
+    clients = load_clients('src/clients.txt')
 
-print("TOTAL =", sum(valores))
-print("==== Fim processamento PetroBahia ====")
+    # Initialize order service
+    order_service = OrderService()
+
+    # Sample items for demonstration
+    sample_items = [
+        {'name': 'Product A', 'price': 100.0},
+        {'name': 'Product B', 'price': 50.0},
+        {'name': 'Product C', 'price': 75.0}
+    ]
+
+    # Process orders for each client
+    print("=" * 60)
+    print("PETROBAHIA - Order Processing System")
+    print("=" * 60)
+    print()
+
+    for client in clients:
+        order = order_service.process_order(client, sample_items)
+        summary = order_service.generate_order_summary(order)
+        print(summary)
+        print("-" * 60)
+
+
+if __name__ == '__main__':
+    main()

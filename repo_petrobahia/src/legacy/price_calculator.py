@@ -1,42 +1,51 @@
-BASES = {
-    "diesel": 3.99,
-    "gas": 5.19,
-    "ethanol": 3.59,
-    "lubricant": 25.0,
-}
+"""
+Module for price calculation with tier-based discounts.
 
-def calculate_price(type, qty):
-    if type == "diesel":
-        if qty > 1000:
-            price = (BASES["diesel"] * qty) * 0.9
-        else:
-            if qty > 500:
-                price = (BASES["diesel"] * qty) * 0.95
-            else:
-                price = BASES["diesel"] * qty
-        print("Calc diesel", price)
-        return price
-    else:
-        if type == "gas":
-            if qty > 200:
-                price = (BASES["gas"] * qty) - 100
-            else:
-                price = BASES["gas"] * qty
-            print("Calc gas", price)
-            return price
-        else:
-            if type == "ethanol":
-                price = BASES["ethanol"] * qty
-                if qty > 80:
-                    price = price * 0.97
-                print("Calc ethanol", price)
-                return price
-            else:
-                if type == "lubricant":
-                    x = 0
-                    for i in range(qty):
-                        x = x + BASES["lubricant"]
-                    return x
-                else:
-                    print("Unknown type. Returning 0")
-                    return 0
+This module provides functionality to calculate prices with discounts
+based on client tier levels.
+"""
+
+
+class PriceCalculator:
+    """
+    A calculator for applying tier-based discounts to prices.
+
+    This class handles price calculations with different discount rates
+    based on client tier levels (gold, silver, bronze).
+    """
+
+    DISCOUNT_RATES = {
+        'gold': 0.20,
+        'silver': 0.10,
+        'bronze': 0.05
+    }
+
+    def calculate_price(self, base_price, tier):
+        """
+        Calculate the final price after applying tier-based discount.
+
+        Args:
+            base_price (float): The original price before discount.
+            tier (str): The client tier level ('gold', 'silver', or 'bronze').
+
+        Returns:
+            float: The final price after applying the discount.
+
+        Note:
+            If the tier is not recognized, no discount is applied.
+        """
+        discount = self.DISCOUNT_RATES.get(tier.lower(), 0)
+        final_price = base_price * (1 - discount)
+        return final_price
+
+    def get_discount_rate(self, tier):
+        """
+        Get the discount rate for a specific tier.
+
+        Args:
+            tier (str): The client tier level.
+
+        Returns:
+            float: The discount rate as a decimal (e.g., 0.20 for 20%).
+        """
+        return self.DISCOUNT_RATES.get(tier.lower(), 0)
