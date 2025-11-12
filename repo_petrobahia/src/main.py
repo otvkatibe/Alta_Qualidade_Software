@@ -17,16 +17,16 @@ def main():
     and displays order summaries.
     """
     # Load clients from file
-    clients = load_clients('src/clients.txt')
+    clients = load_clients("src/clients.txt")
 
     # Initialize order service
     order_service = OrderService()
 
     # Sample items for demonstration
     sample_items = [
-        {'name': 'Product A', 'price': 100.0},
-        {'name': 'Product B', 'price': 50.0},
-        {'name': 'Product C', 'price': 75.0}
+        {"name": "Product A", "price": 100.0},
+        {"name": "Product B", "price": 50.0},
+        {"name": "Product C", "price": 75.0},
     ]
 
     # Process orders for each client
@@ -42,5 +42,5 @@ def main():
         print("-" * 60)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

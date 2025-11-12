@@ -14,11 +14,7 @@ class PriceCalculator:
     based on client tier levels (gold, silver, bronze).
     """
 
-    DISCOUNT_RATES = {
-        'gold': 0.20,
-        'silver': 0.10,
-        'bronze': 0.05
-    }
+    DISCOUNT_RATES = {"gold": 0.20, "silver": 0.10, "bronze": 0.05}
 
     def calculate_price(self, base_price, tier):
         """
