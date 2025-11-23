@@ -1,8 +1,3 @@
-"""
-Gerenciamento de dados de clientes.
-Carrega e valida informações de clientes a partir de arquivos de texto.
-"""
-
 import re
 
 REGEX_EMAIL = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"

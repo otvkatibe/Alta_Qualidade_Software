@@ -1,16 +1,41 @@
-.venv/
-venv/
+# Arquivos de cache do Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Arquivos de teste e cobertura
 .pytest_cache/
 .coverage
 htmlcov/
-report.html
-report.xml
-*.log
-*.tmp
-*.py[cod]
-.env
-.env.*
+.tox/
+.nox/
+
+# Ambientes virtuais
+venv/
+env/
+ENV/
+.venv
+
+# Arquivos do VS Code (opcional, mas recomendado para projetos em equipe)
 .vscode/
-.idea/
-*.swp
+
+# Configurações do Pyright
+pyrightconfig.json
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de distribuição
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Arquivos de dados locais (se não forem essenciais para o repositório)
+clientes.txt
+src/clients.txt
