@@ -26,10 +26,10 @@ class DiscountCalculator(ABC):
 
     @abstractmethod
     def get_discount_rate(self, tier: str) -> float:
-        """Retorna a taxa de desconto para um nível."""
+        """Obtém a taxa de desconto para um nível."""
         ...
 
     @abstractmethod
     def calculate_discounted_price(self, base_price: float, tier: str) -> float:
-        """Calcula o preço final com o desconto aplicado."""
+        """Calcula o preço com desconto aplicado."""
         ...

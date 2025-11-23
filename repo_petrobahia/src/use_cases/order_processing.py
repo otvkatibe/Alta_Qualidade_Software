@@ -12,28 +12,11 @@ class ProcessOrderUseCase:
     """
 
     def __init__(self, discount_calculator: DiscountCalculator):
-        """
-        Inicializa o caso de uso com o calculador de descontos.
-
-        Args:
-            discount_calculator: Serviço para calcular descontos.
-        """
+        """Inicializa o caso de uso de processamento de pedido."""
         self._discount_calculator = discount_calculator
 
     def execute(self, client: Client, items: List[OrderItem]) -> Order:
-        """
-        Processa um pedido para um cliente.
-
-        Args:
-            client: Cliente que está fazendo o pedido.
-            items: Lista de itens do pedido.
-
-        Returns:
-            Entidade Order com os totais calculados.
-
-        Raises:
-            ValueError: Se a lista de itens estiver vazia.
-        """
+        """Processa um pedido para um cliente."""
         if not items:
             raise ValueError("O pedido deve conter pelo menos um item")
 
@@ -63,15 +46,7 @@ class GenerateOrderSummaryUseCase:
     """Caso de uso para gerar resumos de pedidos."""
 
     def execute(self, order: Order) -> str:
-        """
-        Gera um resumo formatado do pedido.
-
-        Args:
-            order: Pedido a ser resumido.
-
-        Returns:
-            String formatada com os detalhes do pedido.
-        """
+        """Gera um resumo formatado do pedido."""
         lines = []
         lines.append(f"Pedido de {order.client.name} (nível {order.client.tier})")
         lines.append("Itens:")

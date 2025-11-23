@@ -18,29 +18,12 @@ class CalculateFinalPriceUseCase:
         quantity_discount: QuantityDiscountCalculator,
         tax_calculator: TaxCalculator,
     ):
-        """
-        Inicializa o caso de uso com os calculadores.
-
-        Args:
-            quantity_discount: Calculador para descontos baseados em quantidade.
-            tax_calculator: Calculador para impostos.
-        """
+        """Inicializa o caso de uso de cálculo de preço final."""
         self._quantity_discount = quantity_discount
         self._tax_calculator = tax_calculator
 
     def execute(self, items: List[OrderItem]) -> float:
-        """
-        Calcula o preço final: subtotal → desconto por quantidade → imposto.
-
-        Args:
-            items: Lista de itens do pedido.
-
-        Returns:
-            Preço final com 2 casas decimais.
-
-        Raises:
-            ValueError: Se a lista de itens estiver vazia.
-        """
+        """Calcula o preço final com desconto por quantidade e imposto."""
         if not items:
             raise ValueError("A lista de itens não pode estar vazia")
 

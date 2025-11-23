@@ -54,5 +54,5 @@ class Order:
 
     @property
     def items_count(self) -> int:
-        """Retorna a quantidade de itens no pedido."""
+        """Quantidade de itens no pedido."""
         return len(self.items)

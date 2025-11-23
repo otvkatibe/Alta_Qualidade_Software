@@ -17,7 +17,7 @@ class WelcomeEmailService:
     """Serviço para envio de emails de boas-vindas para novos clientes."""
 
     def __init__(self, email_sender: EmailSender):
-        """Inicializa com a dependência do enviador de email."""
+        """Inicializa o serviço de boas-vindas."""
         self._email_sender = email_sender
 
     def send_welcome(self, email: str, name: str) -> None:

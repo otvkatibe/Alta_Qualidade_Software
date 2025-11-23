@@ -18,21 +18,15 @@ class TierDiscountCalculator(IDiscountCalculator):
     }
 
     def __init__(self, discount_rates: Optional[dict[str, float]] = None):
-        """
-        Inicializa o calculador com as taxas de desconto.
-
-        Args:
-            discount_rates: Dicionário mapeando nomes de níveis para taxas de desconto.
-                          Se None, usa as taxas padrão.
-        """
+        """Inicializa o calculador de descontos."""
         self._discount_rates = discount_rates or self.DEFAULT_DISCOUNT_RATES
 
     def get_discount_rate(self, tier: str) -> float:
-        """Retorna a taxa de desconto para um nível específico."""
+        """Obtém a taxa de desconto do nível."""
         return self._discount_rates.get(tier.lower(), 0.0)
 
     def calculate_discounted_price(self, base_price: float, tier: str) -> float:
-        """Calcula o preço final após aplicar o desconto do nível."""
+        """Calcula o preço com desconto do nível."""
         if base_price < 0:
             raise ValueError("O preço base não pode ser negativo")
 
@@ -44,7 +38,7 @@ class QuantityDiscountCalculator:
     """Calcula descontos baseados na quantidade de itens."""
 
     def __init__(self):
-        """Inicializa os limites de desconto por quantidade."""
+        """Inicializa o calculador de desconto por quantidade."""
         self._thresholds = [
             (10, 0.20),  # 10+ itens: 20% de desconto
             (5, 0.10),  # 5-9 itens: 10% de desconto
@@ -52,7 +46,7 @@ class QuantityDiscountCalculator:
         ]
 
     def get_discount_rate(self, quantity: int) -> float:
-        """Retorna a taxa de desconto baseada na quantidade."""
+        """Obtém a taxa de desconto por quantidade."""
         for threshold, rate in self._thresholds:
             if quantity >= threshold:
                 return rate

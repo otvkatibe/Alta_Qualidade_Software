@@ -20,16 +20,11 @@ class ClientValidator(IClientValidator):
     """Valida dados do cliente usando composição."""
 
     def __init__(self, email_validator: EmailValidator):
-        """Inicializa o validador com a dependência do validador de email."""
+        """Inicializa o validador de cliente."""
         self._email_validator = email_validator
 
     def validate(self, client: Client) -> bool:
-        """
-        Valida os dados do cliente.
-
-        Raises:
-            ValueError: Se a validação falhar com mensagem de erro específica.
-        """
+        """Valida os dados do cliente."""
         if not client.name or not client.name.strip():
             raise ValueError("O nome do cliente é obrigatório")
 
